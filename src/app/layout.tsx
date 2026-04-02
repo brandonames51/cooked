@@ -16,14 +16,14 @@ export const metadata: Metadata = {
   },
   title: "Rotted — how rotted are you?",
   description:
-    "Upload your screen time screenshot. AI exposes your digital sins. Share your results.",
+    "Your screen time is about to snitch on you. Share your results.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
   ),
   openGraph: {
     title: "Rotted — how rotted are you?",
     description:
-      "Upload your screen time screenshot. Get roasted by AI. Share your results.",
+      "Your screen time is about to snitch on you.",
     url: "https://rotted.app",
     siteName: "Rotted",
     images: [
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rotted — how rotted are you?",
     description:
-      "Upload your screen time screenshot. Get roasted by AI.",
+      "Your screen time is about to snitch on you.",
     images: ["/images/og-preview.png"],
   },
 };
