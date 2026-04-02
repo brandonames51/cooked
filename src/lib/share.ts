@@ -5,14 +5,15 @@ import html2canvas from "html2canvas";
  * Reads the element's actual rendered size and exports at 3x scale for retina.
  */
 export async function exportCardAsImage(element: HTMLElement): Promise<Blob> {
-  const rect = element.getBoundingClientRect();
+  const width = element.scrollWidth || element.offsetWidth;
+  const height = element.scrollHeight || element.offsetHeight;
   const canvas = await html2canvas(element, {
     scale: 3,
     backgroundColor: "#0d0d0d",
     useCORS: true,
     logging: false,
-    width: rect.width,
-    height: rect.height,
+    width,
+    height,
   });
 
   return new Promise((resolve, reject) => {

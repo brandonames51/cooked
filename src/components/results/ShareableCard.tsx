@@ -49,8 +49,8 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginBottom: 16, padding: "8px 0" }}>
           <img src={`/images/${tier.brainImage}`} alt="" style={{ width: 120, height: "auto" }} crossOrigin="anonymous" />
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-            <div style={{ fontFamily: SPACE, fontSize: 64, fontWeight: 700, lineHeight: 1, letterSpacing: -2, color: tier.scoreColor }}>{result.cookedLevel}</div>
-            <div style={{ fontFamily: SPACE, fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.3)", marginTop: 4 }}>/ 100</div>
+            <div style={{ fontFamily: SPACE, fontSize: 64, fontWeight: 700, lineHeight: "64px", height: 64, letterSpacing: -2, color: tier.scoreColor, overflow: "visible" }}>{result.cookedLevel}</div>
+            <div style={{ fontFamily: SPACE, fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.3)", marginTop: 8 }}>/ 100</div>
           </div>
         </div>
 
