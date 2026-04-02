@@ -46,7 +46,7 @@ export default function ScreenshotUploader({
         style={{
           width: "100%",
           minHeight: preview ? "auto" : 220,
-          border: `1px dashed ${dragOver ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.08)"}`,
+          border: `1px dashed ${dragOver ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.12)"}`,
           borderRadius: 20,
           background: dragOver ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.015)",
           display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
@@ -74,13 +74,13 @@ export default function ScreenshotUploader({
           </div>
         ) : (
           <>
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: 16 }}>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: 16 }}>
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
               <polyline points="17 8 12 3 7 8" />
               <line x1="12" y1="3" x2="12" y2="15" />
             </svg>
-            <div style={{ fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.4)", marginBottom: 4 }}>Drop your screen time screenshot</div>
-            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.15)" }}>screenshots only, no cap</div>
+            <div style={{ fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.55)", marginBottom: 4 }}>Drop your screen time screenshot</div>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>screenshots only, no cap</div>
           </>
         )}
       </div>

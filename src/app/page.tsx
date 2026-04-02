@@ -84,33 +84,33 @@ export default function Home() {
       <main style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "40px 20px", minHeight: "100vh", fontFamily: FONTS.body }}>
         <div style={{ fontFamily: FONTS.heading, fontSize: 20, fontWeight: 700, letterSpacing: 8, textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 48 }}>Rotted</div>
         <h1 style={{ fontFamily: FONTS.heading, fontSize: 36, fontWeight: 700, color: "#fff", textAlign: "center", lineHeight: 1.15, letterSpacing: -1, marginBottom: 12 }}>how rotted are you?</h1>
-        <p style={{ fontSize: 15, color: "rgba(255,255,255,0.35)", textAlign: "center", maxWidth: 320, lineHeight: 1.5, marginBottom: 24 }}>Your screen time is about to snitch on you.</p>
+        <p style={{ fontSize: 15, color: "rgba(255,255,255,0.5)", textAlign: "center", maxWidth: 320, lineHeight: 1.5, marginBottom: 24 }}>Your screen time is about to snitch on you.</p>
 
         {/* 3-step visual */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0, marginBottom: 32, width: "100%", maxWidth: 340 }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-            <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
             </div>
-            <span style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>screenshot</span>
+            <span style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>screenshot</span>
           </div>
           <div style={{ width: 32, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
-            <svg width="24" height="8" viewBox="0 0 24 8" fill="none"><path d="M0 4h20M16 1l4 3-4 3" stroke="rgba(255,255,255,0.12)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg width="24" height="8" viewBox="0 0 24 8" fill="none"><path d="M0 4h20M16 1l4 3-4 3" stroke="rgba(255,255,255,0.2)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-            <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
             </div>
-            <span style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>upload</span>
+            <span style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>upload</span>
           </div>
           <div style={{ width: 32, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
-            <svg width="24" height="8" viewBox="0 0 24 8" fill="none"><path d="M0 4h20M16 1l4 3-4 3" stroke="rgba(255,255,255,0.12)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg width="24" height="8" viewBox="0 0 24 8" fill="none"><path d="M0 4h20M16 1l4 3-4 3" stroke="rgba(255,255,255,0.2)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-            <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="5"/><path d="M7 13L5 22l7-3 7 3-2-9"/></svg>
+            <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="5"/><path d="M7 13L5 22l7-3 7 3-2-9"/></svg>
             </div>
-            <span style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.25)" }}>get rotted</span>
+            <span style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>get rotted</span>
           </div>
         </div>
 
@@ -121,22 +121,22 @@ export default function Home() {
         {/* Social proof counter */}
         <div style={{ marginTop: 20, marginBottom: 8, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
           <div style={{ width: 6, height: 6, borderRadius: 3, background: "#48d2b4", animation: "pulse 2s ease-in-out infinite" }} />
-          <span style={{ fontFamily: FONTS.heading, fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.2)", letterSpacing: 0.5 }}>
+          <span style={{ fontFamily: FONTS.heading, fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.35)", letterSpacing: 0.5 }}>
             {scanCount.toLocaleString()} brains scanned
           </span>
         </div>
 
         <div style={{ marginTop: 8, padding: "14px 18px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 14, maxWidth: 340, width: "100%" }}>
-          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", lineHeight: 1.6, textAlign: "center" }}>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", lineHeight: 1.6, textAlign: "center" }}>
 Settings → Screen Time → See All Activity → Screenshot → Upload it here and pray
           </p>
         </div>
         <footer style={{ marginTop: "auto", paddingTop: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <div style={{ display: "flex", gap: 20 }}>
-            <a href="/" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Home</a>
-            <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Privacy</a>
+            <a href="/" style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Home</a>
+            <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Privacy</a>
           </div>
-          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 rotted.app</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.2)" }}>© 2026 rotted.app</span>
         </footer>
       </main>
     );
