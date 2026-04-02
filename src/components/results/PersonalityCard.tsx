@@ -69,7 +69,7 @@ export default function PersonalityCard({ result }: { result: CookedResult }) {
           <span style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.15)" }}>Fresh</span>
           <span style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.15)" }}>Cooked</span>
         </div>
-        <div style={{ height: 6, background: "rgba(255,255,255,0.04)", borderRadius: 3, overflow: "hidden" }}>
+        <div style={{ height: 8, background: "rgba(255,255,255,0.08)", borderRadius: 4, overflow: "hidden" }}>
           <div style={{ height: "100%", borderRadius: 3, width: `${result.cookedLevel}%`, background: tier.meterGrad, transition: "width 1s ease-out" }} />
         </div>
       </div>

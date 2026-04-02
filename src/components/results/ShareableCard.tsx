@@ -71,7 +71,7 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
             <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.15)" }}>Fresh</span>
             <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.15)" }}>Cooked</span>
           </div>
-          <div style={{ height: 8, background: "rgba(255,255,255,0.04)", borderRadius: 4, overflow: "hidden" }}>
+          <div style={{ height: 10, background: "rgba(255,255,255,0.08)", borderRadius: 5, overflow: "hidden" }}>
             <div style={{ height: "100%", borderRadius: 4, width: `${result.cookedLevel}%`, background: tier.meterGrad }} />
           </div>
         </div>
