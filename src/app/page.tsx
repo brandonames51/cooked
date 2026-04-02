@@ -71,8 +71,8 @@ export default function Home() {
   if (state === "idle") {
     return (
       <main style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "40px 20px", minHeight: "100vh", fontFamily: FONTS.body }}>
-        <div style={{ fontFamily: FONTS.heading, fontSize: 20, fontWeight: 700, letterSpacing: 8, textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 48 }}>Cooked</div>
-        <h1 style={{ fontFamily: FONTS.heading, fontSize: 36, fontWeight: 700, color: "#fff", textAlign: "center", lineHeight: 1.15, letterSpacing: -1, marginBottom: 12 }}>how cooked are you?</h1>
+        <div style={{ fontFamily: FONTS.heading, fontSize: 20, fontWeight: 700, letterSpacing: 8, textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 48 }}>Rotted</div>
+        <h1 style={{ fontFamily: FONTS.heading, fontSize: 36, fontWeight: 700, color: "#fff", textAlign: "center", lineHeight: 1.15, letterSpacing: -1, marginBottom: 12 }}>how rotted are you?</h1>
         <p style={{ fontSize: 15, color: "rgba(255,255,255,0.35)", textAlign: "center", maxWidth: 320, lineHeight: 1.5, marginBottom: 40 }}>Upload your screen time screenshot. AI exposes your digital sins.</p>
         <div style={{ width: "100%", maxWidth: 340 }}>
           <ScreenshotUploader onUpload={analyze} />
@@ -87,7 +87,7 @@ export default function Home() {
             <a href="/" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Home</a>
             <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Privacy</a>
           </div>
-          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 Cooked</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 Rotted</span>
         </footer>
       </main>
     );
@@ -124,7 +124,7 @@ export default function Home() {
   if (state === "done" && result) {
     return (
       <main style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "32px 20px 60px", minHeight: "100vh", fontFamily: FONTS.body }}>
-        <div style={{ fontFamily: FONTS.heading, fontSize: 16, fontWeight: 700, letterSpacing: 6, textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 24 }}>Cooked</div>
+        <div style={{ fontFamily: FONTS.heading, fontSize: 16, fontWeight: 700, letterSpacing: 6, textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 24 }}>Rotted</div>
         <div style={{ fontFamily: FONTS.heading, fontSize: 10, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: "rgba(255,255,255,0.2)", marginBottom: 8 }}>Your verdict</div>
 
         <PersonalityCard result={result} />
@@ -147,14 +147,14 @@ export default function Home() {
           }}>{isSaving ? "Saving..." : "Save Image"}</button>
         </div>
 
-        <button onClick={reset} style={{ marginTop: 20, background: "none", border: "none", cursor: "pointer", fontFamily: FONTS.heading, fontSize: 13, fontWeight: 600, letterSpacing: 1, color: "rgba(255,255,255,0.2)", padding: "12px 24px" }}>← Get Cooked Again</button>
+        <button onClick={reset} style={{ marginTop: 20, background: "none", border: "none", cursor: "pointer", fontFamily: FONTS.heading, fontSize: 13, fontWeight: 600, letterSpacing: 1, color: "rgba(255,255,255,0.2)", padding: "12px 24px" }}>← Get Rotted Again</button>
 
         <footer style={{ marginTop: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <div style={{ display: "flex", gap: 20 }}>
             <a href="/" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Home</a>
             <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Privacy</a>
           </div>
-          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 Cooked</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 Rotted</span>
         </footer>
 
         {/* Toast */}

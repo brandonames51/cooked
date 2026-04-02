@@ -1,7 +1,7 @@
 export const BRAND = {
-  name: "Cooked",
-  tagline: "how cooked are you?",
-  url: "getcooked.app",
+  name: "Rotted",
+  tagline: "how rotted are you?",
+  url: "rotted.app",
   description: "Upload your screen time screenshot. AI exposes your digital sins.",
 };
 
@@ -91,7 +91,7 @@ export const TIERS: TierConfig[] = [
     footerDomain: "rgba(220,70,45,0.6)",
   },
   {
-    key: "cooked", label: "Cooked", min: 81, max: 100,
+    key: "rotted", label: "Rotted", min: 81, max: 100,
     brainImage: "brain_5_fin.png",
     scoreColor: "#be1e28",
     pillBg: "rgba(190,30,40,0.1)", pillColor: "rgba(190,30,40,0.8)", pillBorder: "rgba(190,30,40,0.22)",
@@ -112,13 +112,13 @@ export const COOKED_LEVELS = {
   MEDIUM_RARE: { min: 21, max: 40, label: "Medium", color: "#EF9F27" },
   MEDIUM: { min: 41, max: 60, label: "Well Done", color: "#FAC775" },
   WELL_DONE: { min: 61, max: 80, label: "Burnt", color: "#D85A30" },
-  BURNT: { min: 81, max: 100, label: "Cooked", color: "#E24B4A" },
+  BURNT: { min: 81, max: 100, label: "Rotted", color: "#E24B4A" },
 };
 
 export const LOADING_MESSAGES = [
   "Reading your sins...",
   "Analyzing your poor life choices...",
-  "Calculating brainrot levels...",
+  "Calculating brain rot levels...",
   "Your phone is testifying against you...",
   "Generating your digital autopsy...",
 ];

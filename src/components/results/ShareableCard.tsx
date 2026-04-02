@@ -23,7 +23,7 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
 
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-          <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 28, fontWeight: 700, letterSpacing: 10, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.5)" }}>Cooked</div>
+          <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 28, fontWeight: 700, letterSpacing: 10, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.5)" }}>Rotted</div>
           <span style={{
             fontFamily: "'Space Grotesk', sans-serif", fontSize: 16, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase" as const,
             padding: "6px 18px", borderRadius: 100,
@@ -69,7 +69,7 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
         <div style={{ marginBottom: 24 }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
             <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.15)" }}>Fresh</span>
-            <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.15)" }}>Cooked</span>
+            <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.15)" }}>Rotted</span>
           </div>
           <div style={{ height: 10, background: "rgba(255,255,255,0.08)", borderRadius: 5, overflow: "hidden" }}>
             <div style={{ height: "100%", borderRadius: 4, width: `${result.cookedLevel}%`, background: tier.meterGrad }} />
@@ -78,8 +78,8 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
 
         {/* Footer */}
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.04)", gap: 8 }}>
-          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 500, color: "rgba(255,255,255,0.2)", letterSpacing: 0.5 }}>get cooked →</span>
-          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 700, letterSpacing: 0.5, color: tier.footerDomain }}>getcooked.app</span>
+          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 500, color: "rgba(255,255,255,0.2)", letterSpacing: 0.5 }}>get rotted →</span>
+          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 700, letterSpacing: 0.5, color: tier.footerDomain }}>rotted.app</span>
         </div>
       </div>
     );

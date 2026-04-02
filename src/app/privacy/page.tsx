@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Cooked",
-  description: "How Cooked handles your data.",
+  title: "Privacy Policy — Rotted",
+  description: "How Rotted handles your data.",
 };
 
 export default function PrivacyPage() {
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
           <section style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 600, color: "#fff" }}>What We Collect</h2>
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
-              Cooked processes screenshots you upload to generate comedy content. We do not require an account, and we do not store your screenshots or personal data. Once your result is generated, the image is discarded.
+              Rotted processes screenshots you upload to generate comedy content. We do not require an account, and we do not store your screenshots or personal data. Once your result is generated, the image is discarded.
             </p>
           </section>
 
@@ -40,7 +40,7 @@ export default function PrivacyPage() {
           <section style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 600, color: "#fff" }}>Third-Party Services</h2>
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
-              Cooked uses Anthropic (Claude API) for AI analysis and Vercel for hosting. Each service has its own privacy policy.
+              Rotted uses Anthropic (Claude API) for AI analysis and Vercel for hosting. Each service has its own privacy policy.
             </p>
           </section>
 
@@ -48,7 +48,7 @@ export default function PrivacyPage() {
             <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 600, color: "#fff" }}>Contact</h2>
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
               Questions? Reach out at{" "}
-              <a href="mailto:hello@getcooked.app" style={{ color: "#5ce030", textDecoration: "none" }}>hello@getcooked.app</a>
+              <a href="mailto:hello@rotted.app" style={{ color: "#5ce030", textDecoration: "none" }}>hello@rotted.app</a>
             </p>
           </section>
 

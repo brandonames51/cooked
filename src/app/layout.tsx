@@ -14,24 +14,24 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "black-translucent",
   },
-  title: "Cooked — how cooked are you?",
+  title: "Rotted — how rotted are you?",
   description:
     "Upload your screen time screenshot. AI exposes your digital sins. Share your results.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
   ),
   openGraph: {
-    title: "Cooked — how cooked are you?",
+    title: "Rotted — how rotted are you?",
     description:
       "Upload your screen time screenshot. Get roasted by AI. Share your results.",
-    url: "https://getcooked.app",
-    siteName: "Cooked",
+    url: "https://rotted.app",
+    siteName: "Rotted",
     images: [
       {
         url: "/images/og-preview.png",
         width: 1200,
         height: 630,
-        alt: "Cooked — how cooked are you?",
+        alt: "Rotted — how rotted are you?",
       },
     ],
     locale: "en_US",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cooked — how cooked are you?",
+    title: "Rotted — how rotted are you?",
     description:
       "Upload your screen time screenshot. Get roasted by AI.",
     images: ["/images/og-preview.png"],

@@ -21,7 +21,7 @@ export default function PersonalityCard({ result }: { result: CookedResult }) {
 
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-        <div style={{ fontFamily: FONTS.heading, fontSize: 18, fontWeight: 700, letterSpacing: 6, textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Cooked</div>
+        <div style={{ fontFamily: FONTS.heading, fontSize: 18, fontWeight: 700, letterSpacing: 6, textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Rotted</div>
         <span style={{
           fontFamily: FONTS.heading, fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase",
           padding: "4px 12px", borderRadius: 100,
@@ -67,7 +67,7 @@ export default function PersonalityCard({ result }: { result: CookedResult }) {
       <div style={{ marginBottom: 16 }}>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
           <span style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.15)" }}>Fresh</span>
-          <span style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.15)" }}>Cooked</span>
+          <span style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.15)" }}>Rotted</span>
         </div>
         <div style={{ height: 8, background: "rgba(255,255,255,0.08)", borderRadius: 4, overflow: "hidden" }}>
           <div style={{ height: "100%", borderRadius: 3, width: `${result.cookedLevel}%`, background: tier.meterGrad, transition: "width 1s ease-out" }} />
@@ -76,8 +76,8 @@ export default function PersonalityCard({ result }: { result: CookedResult }) {
 
       {/* Footer */}
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", paddingTop: 14, borderTop: "1px solid rgba(255,255,255,0.04)", gap: 6 }}>
-        <span style={{ fontFamily: FONTS.heading, fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.2)", letterSpacing: 0.5 }}>get cooked →</span>
-        <span style={{ fontFamily: FONTS.heading, fontSize: 12, fontWeight: 700, letterSpacing: 0.5, color: tier.footerDomain }}>getcooked.app</span>
+        <span style={{ fontFamily: FONTS.heading, fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.2)", letterSpacing: 0.5 }}>get rotted →</span>
+        <span style={{ fontFamily: FONTS.heading, fontSize: 12, fontWeight: 700, letterSpacing: 0.5, color: tier.footerDomain }}>rotted.app</span>
       </div>
     </div>
   );

@@ -95,7 +95,7 @@ export default function ScreenshotUploader({
           opacity: isLoading ? 0.6 : 1,
           transition: "transform 0.15s ease, box-shadow 0.15s ease",
         }}>
-          {isLoading ? "Analyzing..." : "Get Cooked"}
+          {isLoading ? "Analyzing..." : "Get Rotted"}
         </button>
       )}
     </div>

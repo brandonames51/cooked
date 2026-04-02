@@ -8,7 +8,7 @@ type AnalyzeState = "idle" | "analyzing" | "done" | "error";
 const LOADING_MESSAGES = [
   "Reading your sins...",
   "Analyzing your poor life choices...",
-  "Calculating brainrot levels...",
+  "Calculating brain rot levels...",
   "Your phone is testifying against you...",
   "Generating your digital autopsy...",
   "Consulting the screen time gods...",

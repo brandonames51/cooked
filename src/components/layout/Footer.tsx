@@ -20,7 +20,7 @@ export default function Footer() {
           </Link>
         </div>
         <p className="text-[10px] text-cooked-text-muted">
-          &copy; 2026 Cooked
+          &copy; 2026 Rotted
         </p>
       </div>
     </footer>

@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       return NextResponse.json<AnalyzeResponse>(
         {
           success: false,
-          error: "You're getting cooked too fast! Try again in a bit.",
+          error: "You're getting rotted too fast! Try again in a bit.",
         },
         { status: 429, headers: { "Retry-After": "3600" } }
       );

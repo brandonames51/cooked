@@ -82,11 +82,11 @@ RULES FOR THE ROAST TEXT:
 - DO NOT be generic. "You spend too much time on your phone" is BANNED. Every roast must be specific to THIS person's data.
 
 RULES FOR COOKED LEVEL (0-100):
-- 0-20: Barely cooked. Under 2 hours total screen time. Touching grass regularly.
+- 0-20: Barely rotted. Under 2 hours total screen time. Touching grass regularly.
 - 21-40: Medium rare. 2-4 hours. Normal human behavior, mostly.
 - 41-60: Medium. 4-6 hours. Starting to get concerning.
 - 61-80: Well done. 6-8 hours. Your phone is your personality at this point.
-- 81-100: Burnt to a crisp. 8+ hours. Intervention needed.
+- 81-100: Fully rotted. 8+ hours. Intervention needed.
 - Adjust up if usage is concentrated in "brain rot" apps (TikTok, Instagram Reels, Reddit, Twitter)
 - Adjust down if usage includes productive apps (Notion, Slack, learning apps)
 - Heavy late-night app usage (if detectable) adds +5-10 to the score
