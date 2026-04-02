@@ -45,21 +45,20 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
             <span style={{ fontFamily: DM, fontSize: 10, fontWeight: 500, color: "rgba(255,255,255,0.25)" }}>·</span>
             <span style={{ fontFamily: DM, fontSize: 10, fontWeight: 600, color: tier.footerDomain, letterSpacing: 0.3 }}>rotted.app</span>
           </div>
-          <span style={{
+          <div style={{
             fontFamily: SPACE, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase" as const,
-            padding: "0 14px", borderRadius: 100,
+            padding: "6px 14px", borderRadius: 100,
             background: tier.pillBg, color: tier.pillColor, border: `1px solid ${tier.pillBorder}`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            height: 24, lineHeight: "24px",
-          }}>{tier.label}</span>
+            textAlign: "center" as const,
+          }}>{tier.label}</div>
         </div>
 
-        {/* Brain + Score — brain is visual anchor, score right-aligned */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 24, marginBottom: 20, padding: "4px 0" }}>
-          <img src={`/images/${tier.brainImage}`} alt="" style={{ width: 160, height: "auto", flexShrink: 0 }} crossOrigin="anonymous" />
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-            <div style={{ fontFamily: SPACE, fontSize: 72, fontWeight: 700, lineHeight: "72px", height: 72, letterSpacing: -2, color: tier.scoreColor, overflow: "visible" }}>{result.cookedLevel}</div>
-            <div style={{ fontFamily: SPACE, fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.3)", marginTop: 8 }}>/ 100</div>
+        {/* Brain + Score — both vertically centered in row */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 24, marginBottom: 20 }}>
+          <img src={`/images/${tier.brainImage}`} alt="" style={{ width: 160, height: 160, objectFit: "contain" }} crossOrigin="anonymous" />
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center" }}>
+            <div style={{ fontFamily: SPACE, fontSize: 72, fontWeight: 700, lineHeight: "1", letterSpacing: -2, color: tier.scoreColor }}>{result.cookedLevel}</div>
+            <div style={{ fontFamily: SPACE, fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.3)", marginTop: 4 }}>/ 100</div>
           </div>
         </div>
 
@@ -76,7 +75,7 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
         <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.45)", lineHeight: 1.55, marginBottom: 16, fontWeight: 400 }}>{result.roastText}</div>
 
         {/* Stats */}
-        <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
+        <div style={{ display: "flex", gap: 8 }}>
           <div style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: 12 }}>
             <div style={{ fontFamily: SPACE, fontSize: 9, fontWeight: 600, color: "rgba(255,255,255,0.35)", textTransform: "uppercase" as const, letterSpacing: 2 }}>Screen time</div>
             <div style={{ fontFamily: SPACE, fontSize: 18, fontWeight: 700, color: "rgba(255,255,255,0.85)", marginTop: 4 }}>{result.totalScreenTime}</div>
@@ -88,16 +87,8 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
           </div>
         </div>
 
-        {/* Meter */}
-        <div>
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-            <span style={{ fontFamily: SPACE, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.3)" }}>Healthy</span>
-            <span style={{ fontFamily: SPACE, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.3)" }}>Rotted</span>
-          </div>
-          <div style={{ height: 8, background: "rgba(255,255,255,0.1)", borderRadius: 4, overflow: "hidden" }}>
-            <div style={{ height: "100%", borderRadius: 3, width: `${result.cookedLevel}%`, background: tier.meterGrad }} />
-          </div>
-        </div>
+        {/* Bottom vignette — fades to black below stats for seamless IG Stories blend */}
+        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: "linear-gradient(to bottom, rgba(13,13,13,0), #0d0d0d)", pointerEvents: "none" as const }} />
       </div>
     );
   }
