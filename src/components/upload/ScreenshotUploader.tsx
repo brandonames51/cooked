@@ -88,7 +88,7 @@ export default function ScreenshotUploader({
       {preview && (
         <button onClick={handleGetCooked} disabled={isLoading} style={{
           width: "100%", padding: "16px 0", borderRadius: 14,
-          background: "linear-gradient(135deg, #e89632, #d07820)",
+          background: `linear-gradient(135deg, ${COLORS.green}, ${COLORS.greenDark})`,
           border: "none", cursor: "pointer",
           fontFamily: FONTS.heading, fontSize: 16, fontWeight: 700, letterSpacing: 2,
           textTransform: "uppercase" as const, color: COLORS.bg,
