@@ -38,8 +38,8 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
         {/* Top glow */}
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: tier.topGlow }} />
 
-        {/* Header: rotted.app CTA left + tier pill right — vertically centered */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, height: 28 }}>
+        {/* Header: rotted.app CTA left + tier pill right */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <span style={{ fontFamily: SPACE, fontSize: 14, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.5)" }}>Rotted</span>
             <span style={{ fontFamily: DM, fontSize: 10, fontWeight: 500, color: "rgba(255,255,255,0.25)" }}>·</span>
@@ -47,18 +47,18 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
           </div>
           <span style={{
             fontFamily: SPACE, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase" as const,
-            padding: "4px 12px", borderRadius: 100,
+            padding: "0 14px", borderRadius: 100,
             background: tier.pillBg, color: tier.pillColor, border: `1px solid ${tier.pillBorder}`,
             display: "flex", alignItems: "center", justifyContent: "center",
-            height: 22,
+            height: 24, lineHeight: "24px",
           }}>{tier.label}</span>
         </div>
 
-        {/* Brain + Score */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 18, marginBottom: 16, padding: "8px 0" }}>
-          <img src={`/images/${tier.brainImage}`} alt="" style={{ width: 144, height: "auto" }} crossOrigin="anonymous" />
+        {/* Brain + Score — brain is visual anchor, score right-aligned */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 24, marginBottom: 20, padding: "4px 0" }}>
+          <img src={`/images/${tier.brainImage}`} alt="" style={{ width: 160, height: "auto", flexShrink: 0 }} crossOrigin="anonymous" />
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-            <div style={{ fontFamily: SPACE, fontSize: 64, fontWeight: 700, lineHeight: "64px", height: 64, letterSpacing: -2, color: tier.scoreColor, overflow: "visible" }}>{result.cookedLevel}</div>
+            <div style={{ fontFamily: SPACE, fontSize: 72, fontWeight: 700, lineHeight: "72px", height: 72, letterSpacing: -2, color: tier.scoreColor, overflow: "visible" }}>{result.cookedLevel}</div>
             <div style={{ fontFamily: SPACE, fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.3)", marginTop: 8 }}>/ 100</div>
           </div>
         </div>
