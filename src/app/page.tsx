@@ -139,14 +139,14 @@ Settings → Screen Time → See All Activity → Screenshot → Upload it here 
             border: "none", cursor: "pointer",
             fontFamily: FONTS.heading, fontSize: 14, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "#050505",
             opacity: isSharing ? 0.6 : 1,
-          }}>{isSharing ? "Generating..." : "Post the L"}</button>
+          }}>{isSharing ? "Generating..." : "Share With Friends"}</button>
           <button onClick={handleSave} disabled={isSaving} style={{
             width: "100%", padding: "14px 0", borderRadius: 14,
             background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)",
             cursor: "pointer",
             fontFamily: FONTS.heading, fontSize: 14, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.6)",
             opacity: isSaving ? 0.6 : 1,
-          }}>{isSaving ? "Saving..." : "Save the Evidence"}</button>
+          }}>{isSaving ? "Saving..." : "Download"}</button>
         </div>
 
         <button onClick={reset} style={{ marginTop: 20, background: "none", border: "none", cursor: "pointer", fontFamily: FONTS.heading, fontSize: 13, fontWeight: 600, letterSpacing: 1, color: "rgba(255,255,255,0.35)", padding: "12px 24px" }}>← run it back</button>
