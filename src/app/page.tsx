@@ -15,17 +15,6 @@ export default function Home() {
   const [isSharing, setIsSharing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
-  const [scanCount, setScanCount] = useState(0);
-
-  // Social proof counter
-  useEffect(() => {
-    const base = 14847;
-    const variation = Math.floor(Math.random() * 200);
-    const launchDate = new Date("2026-04-01");
-    const daysSinceLaunch = Math.max(0, Math.floor((Date.now() - launchDate.getTime()) / (1000 * 60 * 60 * 24)));
-    const growth = daysSinceLaunch * 150;
-    setScanCount(base + variation + growth);
-  }, []);
 
   // Rotate loading messages
   useEffect(() => {
@@ -118,15 +107,7 @@ export default function Home() {
           <ScreenshotUploader onUpload={analyze} />
         </div>
 
-        {/* Social proof counter */}
-        <div style={{ marginTop: 20, marginBottom: 8, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
-          <div style={{ width: 6, height: 6, borderRadius: 3, background: "#48d2b4", animation: "pulse 2s ease-in-out infinite" }} />
-          <span style={{ fontFamily: FONTS.heading, fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.35)", letterSpacing: 0.5 }}>
-            {scanCount.toLocaleString()} brains scanned
-          </span>
-        </div>
-
-        <div style={{ marginTop: 8, padding: "14px 18px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 14, maxWidth: 340, width: "100%" }}>
+        <div style={{ marginTop: 20, padding: "14px 18px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 14, maxWidth: 340, width: "100%" }}>
           <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", lineHeight: 1.6, textAlign: "center" }}>
 Settings → Screen Time → See All Activity → Screenshot → Upload it here and pray
           </p>
