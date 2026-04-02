@@ -127,7 +127,7 @@ Settings → Screen Time → See All Activity → Screenshot → Upload it here 
     return (
       <main style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "32px 20px 60px", minHeight: "100vh", fontFamily: FONTS.body }}>
         <div style={{ fontFamily: FONTS.heading, fontSize: 16, fontWeight: 700, letterSpacing: 6, textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 24 }}>Rotted</div>
-        <div style={{ fontFamily: FONTS.heading, fontSize: 10, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: "rgba(255,255,255,0.2)", marginBottom: 8 }}>the diagnosis is in</div>
+        <div style={{ fontFamily: FONTS.heading, fontSize: 10, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: 8 }}>the diagnosis is in</div>
 
         <PersonalityCard result={result} />
         <ShareableCard ref={shareCardRef} result={result} />
@@ -144,19 +144,19 @@ Settings → Screen Time → See All Activity → Screenshot → Upload it here 
             width: "100%", padding: "14px 0", borderRadius: 14,
             background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)",
             cursor: "pointer",
-            fontFamily: FONTS.heading, fontSize: 14, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.5)",
+            fontFamily: FONTS.heading, fontSize: 14, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.6)",
             opacity: isSaving ? 0.6 : 1,
           }}>{isSaving ? "Saving..." : "Save the Evidence"}</button>
         </div>
 
-        <button onClick={reset} style={{ marginTop: 20, background: "none", border: "none", cursor: "pointer", fontFamily: FONTS.heading, fontSize: 13, fontWeight: 600, letterSpacing: 1, color: "rgba(255,255,255,0.2)", padding: "12px 24px" }}>← run it back</button>
+        <button onClick={reset} style={{ marginTop: 20, background: "none", border: "none", cursor: "pointer", fontFamily: FONTS.heading, fontSize: 13, fontWeight: 600, letterSpacing: 1, color: "rgba(255,255,255,0.35)", padding: "12px 24px" }}>← run it back</button>
 
         <footer style={{ marginTop: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <div style={{ display: "flex", gap: 20 }}>
-            <a href="/" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Home</a>
-            <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Privacy</a>
+            <a href="/" style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Home</a>
+            <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Privacy</a>
           </div>
-          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 rotted.app</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.2)" }}>© 2026 rotted.app</span>
         </footer>
 
         {/* Toast */}
