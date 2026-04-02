@@ -10,9 +10,9 @@ const SPACE = "'Space Grotesk', sans-serif";
 const DM = "'DM Sans', -apple-system, sans-serif";
 
 /**
- * ShareableCard — Offscreen 1:1 mirror of PersonalityCard for PNG export.
- * Width fixed at 360px, height auto-sized by content.
- * Exported at 3x scale for retina quality.
+ * ShareableCard — Optimized for Instagram Stories.
+ * 360px wide, auto-height with top/bottom safe zones for IG UI overlay.
+ * Exported at 3x = 1080px wide retina PNG.
  *
  * RULES (html2canvas):
  * - ALL styles inline (no Tailwind)
@@ -27,27 +27,36 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
       <div ref={ref} style={{
         width: 360,
         backgroundColor: "#0d0d0d",
-        padding: "22px 20px 18px",
         fontFamily: DM,
         position: "absolute", left: "-9999px", top: 0,
         overflow: "hidden",
+        paddingTop: 50,
+        paddingBottom: 50,
+        paddingLeft: 20,
+        paddingRight: 20,
       }}>
         {/* Top glow */}
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: tier.topGlow }} />
 
-        {/* Header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-          <div style={{ fontFamily: SPACE, fontSize: 18, fontWeight: 700, letterSpacing: 6, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.5)" }}>Rotted</div>
+        {/* Header: rotted.app CTA left + tier pill right — vertically centered */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, height: 28 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            <span style={{ fontFamily: SPACE, fontSize: 14, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.5)" }}>Rotted</span>
+            <span style={{ fontFamily: DM, fontSize: 10, fontWeight: 500, color: "rgba(255,255,255,0.25)" }}>·</span>
+            <span style={{ fontFamily: DM, fontSize: 10, fontWeight: 600, color: tier.footerDomain, letterSpacing: 0.3 }}>rotted.app</span>
+          </div>
           <span style={{
-            fontFamily: SPACE, fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase" as const,
+            fontFamily: SPACE, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase" as const,
             padding: "4px 12px", borderRadius: 100,
             background: tier.pillBg, color: tier.pillColor, border: `1px solid ${tier.pillBorder}`,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            height: 22,
           }}>{tier.label}</span>
         </div>
 
         {/* Brain + Score */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginBottom: 16, padding: "8px 0" }}>
-          <img src={`/images/${tier.brainImage}`} alt="" style={{ width: 120, height: "auto" }} crossOrigin="anonymous" />
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 18, marginBottom: 16, padding: "8px 0" }}>
+          <img src={`/images/${tier.brainImage}`} alt="" style={{ width: 144, height: "auto" }} crossOrigin="anonymous" />
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
             <div style={{ fontFamily: SPACE, fontSize: 64, fontWeight: 700, lineHeight: "64px", height: 64, letterSpacing: -2, color: tier.scoreColor, overflow: "visible" }}>{result.cookedLevel}</div>
             <div style={{ fontFamily: SPACE, fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.3)", marginTop: 8 }}>/ 100</div>
@@ -80,7 +89,7 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
         </div>
 
         {/* Meter */}
-        <div style={{ marginBottom: 16 }}>
+        <div>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
             <span style={{ fontFamily: SPACE, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.3)" }}>Healthy</span>
             <span style={{ fontFamily: SPACE, fontSize: 9, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.3)" }}>Rotted</span>
@@ -88,12 +97,6 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
           <div style={{ height: 8, background: "rgba(255,255,255,0.1)", borderRadius: 4, overflow: "hidden" }}>
             <div style={{ height: "100%", borderRadius: 3, width: `${result.cookedLevel}%`, background: tier.meterGrad }} />
           </div>
-        </div>
-
-        {/* Footer */}
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", paddingTop: 14, borderTop: "1px solid rgba(255,255,255,0.08)", gap: 6 }}>
-          <span style={{ fontFamily: SPACE, fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.35)", letterSpacing: 0.5 }}>get rotted →</span>
-          <span style={{ fontFamily: SPACE, fontSize: 12, fontWeight: 700, letterSpacing: 0.5, color: tier.footerDomain }}>rotted.app</span>
         </div>
       </div>
     );
