@@ -2,16 +2,17 @@ import html2canvas from "html2canvas";
 
 /**
  * Export a DOM element as a high-quality PNG blob.
- * Card renders at 360x640 in DOM → 3x scale = 1080x1920 final PNG (Instagram Story).
+ * Reads the element's actual rendered size and exports at 3x scale for retina.
  */
 export async function exportCardAsImage(element: HTMLElement): Promise<Blob> {
+  const rect = element.getBoundingClientRect();
   const canvas = await html2canvas(element, {
     scale: 3,
-    backgroundColor: "#050505",
+    backgroundColor: "#0d0d0d",
     useCORS: true,
     logging: false,
-    width: 360,
-    height: 640,
+    width: rect.width,
+    height: rect.height,
   });
 
   return new Promise((resolve, reject) => {
