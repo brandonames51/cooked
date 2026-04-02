@@ -6,13 +6,11 @@ import type { CookedResult } from "@/types";
 type AnalyzeState = "idle" | "analyzing" | "done" | "error";
 
 const LOADING_MESSAGES = [
-  "Reading your sins...",
-  "Analyzing your poor life choices...",
-  "Calculating brain rot levels...",
-  "Your phone is testifying against you...",
-  "Generating your digital autopsy...",
-  "Consulting the screen time gods...",
-  "Measuring your doomscroll velocity...",
+  "your phone is snitching rn...",
+  "this is worse than we thought...",
+  "calculating the brain damage...",
+  "we've seen enough honestly...",
+  "this is actually unhinged...",
 ];
 
 interface UseAnalyzeReturn {

@@ -79,8 +79,8 @@ export default function ScreenshotUploader({
               <polyline points="17 8 12 3 7 8" />
               <line x1="12" y1="3" x2="12" y2="15" />
             </svg>
-            <div style={{ fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.4)", marginBottom: 4 }}>Tap to upload your screenshot</div>
-            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.15)" }}>PNG, JPG, or WEBP</div>
+            <div style={{ fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.4)", marginBottom: 4 }}>Drop your screen time screenshot</div>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.15)" }}>screenshots only, no cap</div>
           </>
         )}
       </div>
@@ -95,7 +95,7 @@ export default function ScreenshotUploader({
           opacity: isLoading ? 0.6 : 1,
           transition: "transform 0.15s ease, box-shadow 0.15s ease",
         }}>
-          {isLoading ? "Analyzing..." : "Get Rotted"}
+          {isLoading ? "Analyzing..." : "Rot Check"}
         </button>
       )}
     </div>

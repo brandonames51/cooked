@@ -73,13 +73,13 @@ export default function Home() {
       <main style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "40px 20px", minHeight: "100vh", fontFamily: FONTS.body }}>
         <div style={{ fontFamily: FONTS.heading, fontSize: 20, fontWeight: 700, letterSpacing: 8, textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 48 }}>Rotted</div>
         <h1 style={{ fontFamily: FONTS.heading, fontSize: 36, fontWeight: 700, color: "#fff", textAlign: "center", lineHeight: 1.15, letterSpacing: -1, marginBottom: 12 }}>how rotted are you?</h1>
-        <p style={{ fontSize: 15, color: "rgba(255,255,255,0.35)", textAlign: "center", maxWidth: 320, lineHeight: 1.5, marginBottom: 40 }}>Upload your screen time screenshot. AI exposes your digital sins.</p>
+        <p style={{ fontSize: 15, color: "rgba(255,255,255,0.35)", textAlign: "center", maxWidth: 320, lineHeight: 1.5, marginBottom: 40 }}>Your screen time is about to snitch on you.</p>
         <div style={{ width: "100%", maxWidth: 340 }}>
           <ScreenshotUploader onUpload={analyze} />
         </div>
         <div style={{ marginTop: 28, padding: "14px 18px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 14, maxWidth: 340, width: "100%" }}>
           <p style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", lineHeight: 1.6, textAlign: "center" }}>
-            <span style={{ color: "rgba(255,255,255,0.4)", fontWeight: 600 }}>How to get your screenshot:</span>{" "}Settings → Screen Time → See All Activity → Screenshot → Upload here
+Settings → Screen Time → See All Activity → Screenshot → Upload it here and pray
           </p>
         </div>
         <footer style={{ marginTop: "auto", paddingTop: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
@@ -87,7 +87,7 @@ export default function Home() {
             <a href="/" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Home</a>
             <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Privacy</a>
           </div>
-          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 Rotted</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 rotted.app</span>
         </footer>
       </main>
     );
@@ -109,7 +109,7 @@ export default function Home() {
     return (
       <main style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", padding: 40, fontFamily: FONTS.body }}>
         <div style={{ fontSize: 48, marginBottom: 20 }}>x_x</div>
-        <p style={{ fontSize: 16, color: "rgba(255,255,255,0.6)", textAlign: "center", marginBottom: 24, maxWidth: 300, lineHeight: 1.5 }}>{error || "Something went wrong. Try again."}</p>
+        <p style={{ fontSize: 16, color: "rgba(255,255,255,0.6)", textAlign: "center", marginBottom: 24, maxWidth: 300, lineHeight: 1.5 }}>{error || "it broke. the rot was too powerful."}</p>
         <button onClick={reset} style={{
           padding: "14px 32px", borderRadius: 14,
           background: `linear-gradient(135deg, ${COLORS.green}, ${COLORS.greenDark})`,
@@ -125,7 +125,7 @@ export default function Home() {
     return (
       <main style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "32px 20px 60px", minHeight: "100vh", fontFamily: FONTS.body }}>
         <div style={{ fontFamily: FONTS.heading, fontSize: 16, fontWeight: 700, letterSpacing: 6, textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 24 }}>Rotted</div>
-        <div style={{ fontFamily: FONTS.heading, fontSize: 10, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: "rgba(255,255,255,0.2)", marginBottom: 8 }}>Your verdict</div>
+        <div style={{ fontFamily: FONTS.heading, fontSize: 10, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: "rgba(255,255,255,0.2)", marginBottom: 8 }}>the diagnosis is in</div>
 
         <PersonalityCard result={result} />
         <ShareableCard ref={shareCardRef} result={result} />
@@ -137,24 +137,24 @@ export default function Home() {
             border: "none", cursor: "pointer",
             fontFamily: FONTS.heading, fontSize: 14, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "#050505",
             opacity: isSharing ? 0.6 : 1,
-          }}>{isSharing ? "Generating..." : "Share to Stories"}</button>
+          }}>{isSharing ? "Generating..." : "Post the L"}</button>
           <button onClick={handleSave} disabled={isSaving} style={{
             width: "100%", padding: "14px 0", borderRadius: 14,
             background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)",
             cursor: "pointer",
             fontFamily: FONTS.heading, fontSize: 14, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.5)",
             opacity: isSaving ? 0.6 : 1,
-          }}>{isSaving ? "Saving..." : "Save Image"}</button>
+          }}>{isSaving ? "Saving..." : "Save the Evidence"}</button>
         </div>
 
-        <button onClick={reset} style={{ marginTop: 20, background: "none", border: "none", cursor: "pointer", fontFamily: FONTS.heading, fontSize: 13, fontWeight: 600, letterSpacing: 1, color: "rgba(255,255,255,0.2)", padding: "12px 24px" }}>← Get Rotted Again</button>
+        <button onClick={reset} style={{ marginTop: 20, background: "none", border: "none", cursor: "pointer", fontFamily: FONTS.heading, fontSize: 13, fontWeight: 600, letterSpacing: 1, color: "rgba(255,255,255,0.2)", padding: "12px 24px" }}>← run it back</button>
 
         <footer style={{ marginTop: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <div style={{ display: "flex", gap: 20 }}>
             <a href="/" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Home</a>
             <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Privacy</a>
           </div>
-          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 Rotted</span>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 rotted.app</span>
         </footer>
 
         {/* Toast */}

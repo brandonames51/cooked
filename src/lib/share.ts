@@ -41,13 +41,13 @@ function canNativeShareFiles(): boolean {
  * Share the card image using Web Share API (HTTPS) or save with guidance (HTTP fallback).
  */
 export async function shareCard(blob: Blob): Promise<{ fallback: boolean }> {
-  const file = new File([blob], "rotted-results.png", { type: "image/png" });
+  const file = new File([blob], "rotted.png", { type: "image/png" });
 
   if (canNativeShareFiles()) {
     try {
       await navigator.share({
-        title: "My Rotted Results",
-        text: "how rotted are you? rotted.app",
+        title: "i'm cooked lol",
+        text: "how rotted are you? \u{1F9E0} rotted.app",
         files: [file],
       });
       return { fallback: false };
@@ -67,7 +67,7 @@ export function downloadImage(blob: Blob): void {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "rotted-results.png";
+  link.download = "rotted.png";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

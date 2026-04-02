@@ -2,7 +2,7 @@ export const BRAND = {
   name: "Rotted",
   tagline: "how rotted are you?",
   url: "rotted.app",
-  description: "Upload your screen time screenshot. AI exposes your digital sins.",
+  description: "Your screen time is about to snitch on you.",
 };
 
 export const FONTS = {
@@ -116,9 +116,9 @@ export const COOKED_LEVELS = {
 };
 
 export const LOADING_MESSAGES = [
-  "Reading your sins...",
-  "Analyzing your poor life choices...",
-  "Calculating brain rot levels...",
-  "Your phone is testifying against you...",
-  "Generating your digital autopsy...",
+  "your phone is snitching rn...",
+  "this is worse than we thought...",
+  "calculating the brain damage...",
+  "we've seen enough honestly...",
+  "this is actually unhinged...",
 ];
