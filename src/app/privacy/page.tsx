@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — Cooked",
@@ -11,76 +10,51 @@ export default function PrivacyPage() {
   return (
     <>
       <Header />
-      <main className="flex-1 px-6 py-12">
-        <div className="max-w-2xl mx-auto flex flex-col gap-8">
-          <h1 className="text-3xl font-bold text-cooked-amber">
+      <main style={{ flex: 1, padding: "0 24px 48px" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto", display: "flex", flexDirection: "column", gap: 32 }}>
+          <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 28, fontWeight: 700, color: "#5ce030" }}>
             Privacy Policy
           </h1>
 
-          <section className="flex flex-col gap-3">
-            <h2 className="text-lg font-semibold text-cooked-text-primary">
-              What We Collect
-            </h2>
-            <p className="text-sm text-cooked-text-secondary leading-relaxed">
-              Cooked processes screenshots you upload to generate comedy
-              content. We do not require an account, and we do not store your
-              screenshots or personal data. Once your result is generated, the
-              image is discarded.
+          <section style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 600, color: "#fff" }}>What We Collect</h2>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
+              Cooked processes screenshots you upload to generate comedy content. We do not require an account, and we do not store your screenshots or personal data. Once your result is generated, the image is discarded.
             </p>
           </section>
 
-          <section className="flex flex-col gap-3">
-            <h2 className="text-lg font-semibold text-cooked-text-primary">
-              How Screenshots Are Processed
-            </h2>
-            <p className="text-sm text-cooked-text-secondary leading-relaxed">
-              Your screenshot is sent to Anthropic&apos;s Claude API for
-              analysis. The image is processed in real-time and is not stored on
-              our servers or by Anthropic after processing.
+          <section style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 600, color: "#fff" }}>How Screenshots Are Processed</h2>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
+              Your screenshot is sent to Anthropic&apos;s Claude API for analysis. The image is processed in real-time and is not stored on our servers or by Anthropic after processing.
             </p>
           </section>
 
-          <section className="flex flex-col gap-3">
-            <h2 className="text-lg font-semibold text-cooked-text-primary">
-              Cookies &amp; Analytics
-            </h2>
-            <p className="text-sm text-cooked-text-secondary leading-relaxed">
-              We use Vercel&apos;s built-in analytics to understand aggregate
-              traffic. No tracking cookies are used.
+          <section style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 600, color: "#fff" }}>Cookies &amp; Analytics</h2>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
+              We use Vercel&apos;s built-in analytics to understand aggregate traffic. No tracking cookies are used.
             </p>
           </section>
 
-          <section className="flex flex-col gap-3">
-            <h2 className="text-lg font-semibold text-cooked-text-primary">
-              Third-Party Services
-            </h2>
-            <p className="text-sm text-cooked-text-secondary leading-relaxed">
-              Cooked uses Anthropic (Claude API) for AI analysis and Vercel for
-              hosting. Each service has its own privacy policy.
+          <section style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 600, color: "#fff" }}>Third-Party Services</h2>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
+              Cooked uses Anthropic (Claude API) for AI analysis and Vercel for hosting. Each service has its own privacy policy.
             </p>
           </section>
 
-          <section className="flex flex-col gap-3">
-            <h2 className="text-lg font-semibold text-cooked-text-primary">
-              Contact
-            </h2>
-            <p className="text-sm text-cooked-text-secondary leading-relaxed">
+          <section style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 600, color: "#fff" }}>Contact</h2>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>
               Questions? Reach out at{" "}
-              <a
-                href="mailto:hello@getcooked.app"
-                className="text-cooked-amber hover:underline"
-              >
-                hello@getcooked.app
-              </a>
+              <a href="mailto:hello@getcooked.app" style={{ color: "#5ce030", textDecoration: "none" }}>hello@getcooked.app</a>
             </p>
           </section>
 
-          <p className="text-xs text-cooked-text-muted">
-            Last updated: April 2026
-          </p>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>Last updated: April 2026</p>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

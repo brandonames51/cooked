@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import Button from "@/components/ui/Button";
+import { useState, useRef, useCallback } from "react";
+import { FONTS, COLORS } from "@/constants";
 
 interface ScreenshotUploaderProps {
   onUpload: (dataUrl: string) => void;
@@ -12,112 +12,92 @@ export default function ScreenshotUploader({
   onUpload,
   isLoading = false,
 }: ScreenshotUploaderProps) {
+  const [dragOver, setDragOver] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleFile = useCallback((file: File | undefined) => {
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = (ev) => {
-      setPreview(ev.target?.result as string);
+    reader.onload = (e) => {
+      const dataUrl = e.target?.result as string;
+      setPreview(dataUrl);
     };
     reader.readAsDataURL(file);
+  }, []);
+
+  const handleGetCooked = () => {
+    if (preview) onUpload(preview);
   };
 
-  const handleClear = () => {
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setPreview(null);
     if (inputRef.current) inputRef.current.value = "";
   };
 
-  if (preview) {
-    return (
-      <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
-        <div style={{
-          width: "100%",
-          borderRadius: "12px",
-          border: "2px solid #333",
-          overflow: "hidden",
-          backgroundColor: "#1A1A1A",
-        }}>
-          <img
-            src={preview}
-            alt="Screenshot preview"
-            style={{ width: "100%", height: "auto", display: "block" }}
-          />
-        </div>
-        <div style={{ display: "flex", gap: "12px", width: "100%" }}>
-          <Button variant="secondary" className="flex-1" onClick={handleClear}>
-            Clear
-          </Button>
-          <Button
-            className="flex-1"
-            onClick={() => onUpload(preview)}
-            disabled={isLoading}
-          >
-            {isLoading ? "Analyzing..." : "Get Cooked"}
-          </Button>
-        </div>
-        <button
-          onClick={handleClear}
-          style={{
-            background: "none",
-            border: "none",
-            color: "#666",
-            fontSize: "13px",
-            cursor: "pointer",
-            padding: "4px",
-          }}
-        >
-          Choose different image
-        </button>
-      </div>
-    );
-  }
-
   return (
-    <label style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      width: "100%",
-      minHeight: "300px",
-      border: "2px dashed #333",
-      borderRadius: "12px",
-      cursor: "pointer",
-      padding: "40px 20px",
-      textAlign: "center",
-      backgroundColor: "#1A1A1A",
-    }}>
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: "16px", pointerEvents: "none" }}>
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-        <polyline points="17 8 12 3 7 8" />
-        <line x1="12" y1="3" x2="12" y2="15" />
-      </svg>
-      <p style={{ color: "#AAA", fontSize: "16px", margin: "0 0 8px", pointerEvents: "none" }}>
-        Tap to upload your screenshot
-      </p>
-      <p style={{ color: "#666", fontSize: "14px", margin: 0, pointerEvents: "none" }}>
-        PNG, JPG, or WEBP
-      </p>
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
+    <div style={{ display: "flex", flexDirection: "column", gap: 16, width: "100%" }}>
+      <div
+        onClick={() => inputRef.current?.click()}
+        onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+        onDragLeave={() => setDragOver(false)}
+        onDrop={(e) => { e.preventDefault(); setDragOver(false); handleFile(e.dataTransfer.files[0]); }}
         style={{
-          position: "absolute",
-          width: "1px",
-          height: "1px",
-          padding: 0,
-          margin: "-1px",
-          overflow: "hidden",
-          clip: "rect(0,0,0,0)",
-          whiteSpace: "nowrap",
-          border: 0,
+          width: "100%",
+          minHeight: preview ? "auto" : 220,
+          border: `1px dashed ${dragOver ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.08)"}`,
+          borderRadius: 20,
+          background: dragOver ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.015)",
+          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+          cursor: "pointer", padding: 24,
+          transition: "all 0.2s ease",
+          position: "relative",
         }}
-      />
-    </label>
+      >
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          style={{ display: "none" }}
+          onChange={(e) => handleFile(e.target.files?.[0])}
+        />
+        {preview ? (
+          <div style={{ width: "100%", position: "relative" }}>
+            <img src={preview} alt="Screenshot preview" style={{ width: "100%", borderRadius: 12, display: "block" }} />
+            <button onClick={handleClear} style={{
+              position: "absolute", top: 8, right: 8, width: 28, height: 28, borderRadius: 14,
+              background: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.1)",
+              color: "rgba(255,255,255,0.6)", fontSize: 14, cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1,
+            }}>✕</button>
+          </div>
+        ) : (
+          <>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: 16 }}>
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            <div style={{ fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.4)", marginBottom: 4 }}>Tap to upload your screenshot</div>
+            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.15)" }}>PNG, JPG, or WEBP</div>
+          </>
+        )}
+      </div>
+
+      {preview && (
+        <button onClick={handleGetCooked} disabled={isLoading} style={{
+          width: "100%", padding: "16px 0", borderRadius: 14,
+          background: `linear-gradient(135deg, ${COLORS.green}, ${COLORS.greenDark})`,
+          border: "none", cursor: "pointer",
+          fontFamily: FONTS.heading, fontSize: 16, fontWeight: 700, letterSpacing: 2,
+          textTransform: "uppercase" as const, color: COLORS.bg,
+          opacity: isLoading ? 0.6 : 1,
+          transition: "transform 0.15s ease, box-shadow 0.15s ease",
+        }}>
+          {isLoading ? "Analyzing..." : "Get Cooked"}
+        </button>
+      )}
+    </div>
   );
 }

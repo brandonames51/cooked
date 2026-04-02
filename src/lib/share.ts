@@ -7,7 +7,7 @@ import html2canvas from "html2canvas";
 export async function exportCardAsImage(element: HTMLElement): Promise<Blob> {
   const canvas = await html2canvas(element, {
     scale: 2,
-    backgroundColor: "#0F0F0F",
+    backgroundColor: "#050505",
     useCORS: true,
     logging: false,
     width: 540,

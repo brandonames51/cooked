@@ -1,355 +1,85 @@
 import { forwardRef } from "react";
 import type { CookedResult } from "@/types";
-import { COOKED_LEVELS } from "@/constants";
+import { getTier } from "@/constants";
 
 interface ShareableCardProps {
   result: CookedResult;
 }
 
-function getLevelColor(score: number): string {
-  const level = Object.values(COOKED_LEVELS).find(
-    (l) => score >= l.min && score <= l.max
-  );
-  return level?.color ?? "#EF9F27";
-}
-
-function getLevelLabel(score: number): string {
-  const level = Object.values(COOKED_LEVELS).find(
-    (l) => score >= l.min && score <= l.max
-  );
-  return level?.label ?? "Cooked";
-}
-
 const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
   ({ result }, ref) => {
-    const levelColor = getLevelColor(result.cookedLevel);
-    const levelLabel = getLevelLabel(result.cookedLevel);
-    const typeLength = result.personalityType.length;
-    const typeFontSize = typeLength > 30 ? 20 : typeLength > 22 ? 22 : 26;
+    const tier = getTier(result.cookedLevel);
 
     return (
-      <div
-        ref={ref}
-        style={{
-          width: 540,
-          height: 960,
-          backgroundColor: "#0F0F0F",
-          padding: "28px 28px 24px",
-          fontFamily: "'Inter', system-ui, sans-serif",
-          display: "flex",
-          flexDirection: "column",
-          position: "absolute",
-          left: "-9999px",
-          top: 0,
-          overflow: "hidden",
-        }}
-      >
+      <div ref={ref} style={{
+        width: 540, height: 960, backgroundColor: "#050505",
+        padding: "40px 32px 32px",
+        fontFamily: "'DM Sans', -apple-system, sans-serif",
+        display: "flex", flexDirection: "column",
+        position: "absolute", left: "-9999px", top: 0, overflow: "hidden",
+      }}>
+        {/* Top glow */}
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: tier.topGlow }} />
+
         {/* Header */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {/* Clock icon as SVG */}
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#EF9F27"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-            <span
-              style={{
-                color: "#EF9F27",
-                fontSize: 14,
-                fontWeight: 700,
-                letterSpacing: 3,
-                textTransform: "uppercase" as const,
-              }}
-            >
-              COOKED
-            </span>
-          </div>
-          <span style={{ color: "#666666", fontSize: 11 }}>getcooked.app</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+          <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 28, fontWeight: 700, letterSpacing: 10, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.5)" }}>Cooked</div>
+          <span style={{
+            fontFamily: "'Space Grotesk', sans-serif", fontSize: 16, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase" as const,
+            padding: "6px 18px", borderRadius: 100,
+            background: tier.pillBg, color: tier.pillColor, border: `1px solid ${tier.pillBorder}`,
+          }}>{tier.label}</span>
         </div>
 
-        {/* Diagnosis label */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            marginBottom: 12,
-          }}
-        >
-          <div
-            style={{ flex: 1, height: 1, backgroundColor: "#333333" }}
-          />
-          <span
-            style={{
-              color: "#AAAAAA",
-              fontSize: 11,
-              fontWeight: 600,
-              letterSpacing: 3,
-              textTransform: "uppercase" as const,
-            }}
-          >
-            YOUR DIAGNOSIS
-          </span>
-          <div
-            style={{ flex: 1, height: 1, backgroundColor: "#333333" }}
-          />
-        </div>
-
-        {/* Personality type */}
-        <div
-          style={{
-            color: "#FFFFFF",
-            fontSize: typeFontSize,
-            fontWeight: 700,
-            lineHeight: 1.2,
-            textAlign: "center" as const,
-            marginBottom: 18,
-            padding: "0 8px",
-          }}
-        >
-          {result.personalityType}
-        </div>
-
-        {/* Roast text card */}
-        <div
-          style={{
-            backgroundColor: "#1A1A1A",
-            borderRadius: 12,
-            padding: 16,
-            marginBottom: 16,
-          }}
-        >
-          <div
-            style={{
-              color: "#CCCCCC",
-              fontSize: 13,
-              lineHeight: 1.55,
-            }}
-          >
-            {result.roastText}
+        {/* Brain + Score */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 32, marginBottom: 28, padding: "12px 0" }}>
+          <img src={`/images/${tier.brainImage}`} alt="" style={{ width: 180, height: "auto" }} crossOrigin="anonymous" />
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 96, fontWeight: 700, lineHeight: 1, letterSpacing: -3, color: tier.scoreColor }}>{result.cookedLevel}</div>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 24, fontWeight: 500, color: "rgba(255,255,255,0.15)", marginTop: -6 }}>/ 100</div>
           </div>
         </div>
 
-        {/* Three stat boxes */}
-        <div
-          style={{
-            display: "flex",
-            gap: 10,
-            marginBottom: 16,
-          }}
-        >
-          {/* Total Screen Time */}
-          <div
-            style={{
-              flex: 1,
-              backgroundColor: "#1A1A1A",
-              borderRadius: 10,
-              padding: "10px 12px",
-            }}
-          >
-            <div
-              style={{
-                color: "#888888",
-                fontSize: 10,
-                fontWeight: 500,
-                textTransform: "uppercase" as const,
-                letterSpacing: 0.5,
-                marginBottom: 4,
-              }}
-            >
-              Total
-            </div>
-            <div
-              style={{
-                color: "#EF9F27",
-                fontSize: 19,
-                fontWeight: 700,
-                fontFamily: "'JetBrains Mono', monospace",
-              }}
-            >
-              {result.totalScreenTime}
-            </div>
-          </div>
+        {/* Personality */}
+        <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 34, fontWeight: 700, color: "#fff", lineHeight: 1.2, textAlign: "center" as const, marginBottom: 24, letterSpacing: -0.5 }}>{result.personalityType}</div>
 
-          {/* Cooked Level */}
-          <div
-            style={{
-              flex: 1,
-              backgroundColor: "#1A1A1A",
-              borderRadius: 10,
-              padding: "10px 12px",
-            }}
-          >
-            <div
-              style={{
-                color: "#888888",
-                fontSize: 10,
-                fontWeight: 500,
-                textTransform: "uppercase" as const,
-                letterSpacing: 0.5,
-                marginBottom: 4,
-              }}
-            >
-              Cooked
-            </div>
-            <div
-              style={{
-                color: levelColor,
-                fontSize: 19,
-                fontWeight: 700,
-                fontFamily: "'JetBrains Mono', monospace",
-              }}
-            >
-              {result.cookedLevel}/100
-            </div>
-          </div>
+        {/* Most damning */}
+        <div style={{ background: "rgba(255,255,255,0.02)", borderLeft: `3px solid ${tier.damningBorder}`, padding: "18px 24px", marginBottom: 20 }}>
+          <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: 3, marginBottom: 8, color: tier.damningLabel }}>Most damning</div>
+          <div style={{ fontSize: 20, color: "rgba(255,255,255,0.7)", lineHeight: 1.5, fontWeight: 500 }}>{result.stats.mostDamning}</div>
+        </div>
 
-          {/* Top App */}
-          <div
-            style={{
-              flex: 1,
-              backgroundColor: "#1A1A1A",
-              borderRadius: 10,
-              padding: "10px 12px",
-            }}
-          >
-            <div
-              style={{
-                color: "#888888",
-                fontSize: 10,
-                fontWeight: 500,
-                textTransform: "uppercase" as const,
-                letterSpacing: 0.5,
-                marginBottom: 4,
-              }}
-            >
-              Top App
-            </div>
-            <div
-              style={{
-                color: "#FFFFFF",
-                fontSize: 14,
-                fontWeight: 600,
-                marginBottom: 1,
-              }}
-            >
-              {result.topApp}
-            </div>
-            <div style={{ color: "#888888", fontSize: 10 }}>
-              {result.topAppTime}
-            </div>
+        {/* Roast */}
+        <div style={{ fontSize: 18, color: "rgba(255,255,255,0.3)", lineHeight: 1.55, marginBottom: 24, fontWeight: 400, flexGrow: 1 }}>{result.roastText}</div>
+
+        {/* Stats */}
+        <div style={{ display: "flex", gap: 12, marginBottom: 20 }}>
+          <div style={{ flex: 1, background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 16, padding: "16px 18px" }}>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.2)", textTransform: "uppercase" as const, letterSpacing: 3 }}>Screen time</div>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 28, fontWeight: 700, color: "rgba(255,255,255,0.85)", marginTop: 6 }}>{result.totalScreenTime}</div>
+          </div>
+          <div style={{ flex: 1, background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 16, padding: "16px 18px" }}>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.2)", textTransform: "uppercase" as const, letterSpacing: 3 }}>Top app</div>
+            <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 28, fontWeight: 700, color: tier.accentColor, marginTop: 6 }}>{result.topApp}</div>
+            <div style={{ fontSize: 16, color: "rgba(255,255,255,0.2)", fontWeight: 500, marginTop: 2 }}>{result.topAppTime}</div>
           </div>
         </div>
 
-        {/* Cooked meter */}
-        <div style={{ marginBottom: 16, padding: "0 2px" }}>
-          <div
-            style={{
-              height: 12,
-              borderRadius: 6,
-              backgroundColor: "#1A1A1A",
-              overflow: "hidden",
-              position: "relative" as const,
-            }}
-          >
-            <div
-              style={{
-                height: "100%",
-                width: `${result.cookedLevel}%`,
-                borderRadius: 6,
-                background:
-                  result.cookedLevel <= 30
-                    ? "#97C459"
-                    : result.cookedLevel <= 60
-                      ? "linear-gradient(90deg, #97C459, #EF9F27)"
-                      : result.cookedLevel <= 80
-                        ? "linear-gradient(90deg, #97C459, #EF9F27, #D85A30)"
-                        : "linear-gradient(90deg, #97C459, #EF9F27, #D85A30, #E24B4A)",
-              }}
-            />
+        {/* Meter */}
+        <div style={{ marginBottom: 24 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+            <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.15)" }}>Fresh</span>
+            <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase" as const, color: "rgba(255,255,255,0.15)" }}>Cooked</span>
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: 4,
-            }}
-          >
-            <span style={{ color: "#888888", fontSize: 10 }}>raw</span>
-            <span style={{ color: "#888888", fontSize: 10 }}>well done</span>
-            <span style={{ color: "#888888", fontSize: 10 }}>burnt</span>
+          <div style={{ height: 8, background: "rgba(255,255,255,0.04)", borderRadius: 4, overflow: "hidden" }}>
+            <div style={{ height: "100%", borderRadius: 4, width: `${result.cookedLevel}%`, background: tier.meterGrad }} />
           </div>
         </div>
 
-        {/* Most damning stat */}
-        <div
-          style={{
-            backgroundColor: "#1E1410",
-            borderRadius: 10,
-            padding: "12px 14px",
-            borderLeft: "3px solid #EF9F27",
-            marginBottom: "auto",
-          }}
-        >
-          <div
-            style={{
-              color: "#888888",
-              fontSize: 10,
-              fontWeight: 500,
-              textTransform: "uppercase" as const,
-              letterSpacing: 0.5,
-              marginBottom: 4,
-            }}
-          >
-            Most damning
-          </div>
-          <div
-            style={{
-              color: "#EF9F27",
-              fontSize: 13,
-              fontWeight: 500,
-              lineHeight: 1.4,
-            }}
-          >
-            {result.stats.mostDamning}
-          </div>
-        </div>
-
-        {/* Footer CTA */}
-        <div
-          style={{
-            borderTop: "1px solid #333333",
-            paddingTop: 16,
-            textAlign: "center" as const,
-          }}
-        >
-          <div
-            style={{
-              color: "#EF9F27",
-              fontSize: 14,
-              fontWeight: 600,
-              marginBottom: 4,
-            }}
-          >
-            how cooked are you?
-          </div>
-          <div style={{ color: "#666666", fontSize: 12 }}>getcooked.app</div>
+        {/* Footer */}
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", paddingTop: 20, borderTop: "1px solid rgba(255,255,255,0.04)", gap: 8 }}>
+          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 500, color: "rgba(255,255,255,0.2)", letterSpacing: 0.5 }}>get cooked →</span>
+          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, fontWeight: 700, letterSpacing: 0.5, color: tier.footerDomain }}>getcooked.app</span>
         </div>
       </div>
     );

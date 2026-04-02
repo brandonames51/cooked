@@ -1,26 +1,32 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import { useState, useRef, useEffect } from "react";
+import { useAnalyze } from "@/hooks/useAnalyze";
 import ScreenshotUploader from "@/components/upload/ScreenshotUploader";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import PersonalityCard from "@/components/results/PersonalityCard";
 import ShareableCard from "@/components/results/ShareableCard";
-import Button from "@/components/ui/Button";
-import { useAnalyze } from "@/hooks/useAnalyze";
+import { FONTS, COLORS, LOADING_MESSAGES } from "@/constants";
 import { exportCardAsImage, shareCard, saveCardAsImage } from "@/lib/share";
 
 export default function Home() {
-  const { state, result, error, loadingMessage, analyze, reset } =
-    useAnalyze();
-  const cardRef = useRef<HTMLDivElement>(null);
-  const resultsRef = useRef<HTMLDivElement>(null);
+  const { state, result, error, analyze, reset } = useAnalyze();
+  const shareCardRef = useRef<HTMLDivElement>(null);
+  const [loadingMsgIdx, setLoadingMsgIdx] = useState(0);
   const [isSharing, setIsSharing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
-  // Auto-scroll to results when analysis completes
+  // Rotate loading messages
+  useEffect(() => {
+    if (state !== "analyzing") return;
+    setLoadingMsgIdx(0);
+    const interval = setInterval(() => {
+      setLoadingMsgIdx((prev) => (prev + 1) % LOADING_MESSAGES.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [state]);
+
+  // Auto-scroll to top on results
   useEffect(() => {
     if (state === "done") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -32,141 +38,136 @@ export default function Home() {
     setTimeout(() => setToast(null), 4000);
   };
 
-  const handleUpload = (base64: string) => {
-    analyze(base64);
-  };
-
-  const handleShare = async () => {
-    if (!cardRef.current) return;
+  async function handleShare() {
+    if (!shareCardRef.current) return;
     setIsSharing(true);
     try {
-      const blob = await exportCardAsImage(cardRef.current);
+      const blob = await exportCardAsImage(shareCardRef.current);
       const { fallback } = await shareCard(blob);
       if (fallback) {
         showToast("Image saved! Open Instagram and share from your camera roll.");
       }
-    } catch (err) {
-      console.error("Share failed:", err);
+    } catch (e) {
+      console.error("Share failed:", e);
     } finally {
       setIsSharing(false);
     }
-  };
+  }
 
-  const handleSave = async () => {
-    if (!cardRef.current) return;
+  async function handleSave() {
+    if (!shareCardRef.current) return;
     setIsSaving(true);
     try {
-      await saveCardAsImage(cardRef.current);
+      await saveCardAsImage(shareCardRef.current);
       showToast("Image saved!");
-    } catch (err) {
-      console.error("Save failed:", err);
+    } catch (e) {
+      console.error("Save failed:", e);
     } finally {
       setIsSaving(false);
     }
-  };
+  }
 
-  return (
-    <>
-      <Header />
-      <main className="flex-1 flex flex-col items-center justify-center px-6 py-12">
-        {/* IDLE — Upload screen */}
-        {state === "idle" && (
-          <div className="w-full max-w-md flex flex-col items-center gap-8 text-center">
-            <div className="flex flex-col gap-3">
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-cooked-text-primary">
-                how cooked are you?
-              </h1>
-              <p className="text-base text-cooked-text-secondary">
-                Upload your screen time screenshot. AI exposes your digital
-                sins.
-              </p>
-            </div>
-
-            <ScreenshotUploader onUpload={handleUpload} />
-
-            <div className="bg-cooked-surface border border-cooked-border rounded-[12px] p-4 w-full">
-              <p className="text-xs text-cooked-text-muted leading-relaxed">
-                <span className="text-cooked-text-secondary font-medium">
-                  How to get your screenshot:
-                </span>{" "}
-                Settings &rarr; Screen Time &rarr; See All Activity &rarr;
-                Screenshot &rarr; Upload here
-              </p>
-            </div>
+  // ── IDLE ──
+  if (state === "idle") {
+    return (
+      <main style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "40px 20px", minHeight: "100vh", fontFamily: FONTS.body }}>
+        <div style={{ fontFamily: FONTS.heading, fontSize: 20, fontWeight: 700, letterSpacing: 8, textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 48 }}>Cooked</div>
+        <h1 style={{ fontFamily: FONTS.heading, fontSize: 36, fontWeight: 700, color: "#fff", textAlign: "center", lineHeight: 1.15, letterSpacing: -1, marginBottom: 12 }}>how cooked are you?</h1>
+        <p style={{ fontSize: 15, color: "rgba(255,255,255,0.35)", textAlign: "center", maxWidth: 320, lineHeight: 1.5, marginBottom: 40 }}>Upload your screen time screenshot. AI exposes your digital sins.</p>
+        <div style={{ width: "100%", maxWidth: 340 }}>
+          <ScreenshotUploader onUpload={analyze} />
+        </div>
+        <div style={{ marginTop: 28, padding: "14px 18px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 14, maxWidth: 340, width: "100%" }}>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", lineHeight: 1.6, textAlign: "center" }}>
+            <span style={{ color: "rgba(255,255,255,0.4)", fontWeight: 600 }}>How to get your screenshot:</span>{" "}Settings → Screen Time → See All Activity → Screenshot → Upload here
+          </p>
+        </div>
+        <footer style={{ marginTop: "auto", paddingTop: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+          <div style={{ display: "flex", gap: 20 }}>
+            <a href="/" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Home</a>
+            <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Privacy</a>
           </div>
-        )}
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 Cooked</span>
+        </footer>
+      </main>
+    );
+  }
 
-        {/* ANALYZING — Loading screen */}
-        {state === "analyzing" && (
-          <div className="w-full max-w-md flex flex-col items-center gap-8 text-center py-16">
-            <LoadingSpinner />
-            <p className="text-lg text-cooked-text-secondary animate-pulse">
-              {loadingMessage}
-            </p>
+  // ── LOADING ──
+  if (state === "analyzing") {
+    return (
+      <main style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", padding: 40, fontFamily: FONTS.body }}>
+        <div style={{ width: 48, height: 48, border: "2px solid rgba(255,255,255,0.06)", borderTop: `2px solid ${COLORS.green}`, borderRadius: "50%", animation: "spin 1s linear infinite", marginBottom: 28 }} />
+        <p style={{ fontFamily: FONTS.heading, fontSize: 16, fontWeight: 600, color: "rgba(255,255,255,0.6)", textAlign: "center", letterSpacing: 0.5 }}>{LOADING_MESSAGES[loadingMsgIdx]}</p>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      </main>
+    );
+  }
+
+  // ── ERROR ──
+  if (state === "error") {
+    return (
+      <main style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh", padding: 40, fontFamily: FONTS.body }}>
+        <div style={{ fontSize: 48, marginBottom: 20 }}>x_x</div>
+        <p style={{ fontSize: 16, color: "rgba(255,255,255,0.6)", textAlign: "center", marginBottom: 24, maxWidth: 300, lineHeight: 1.5 }}>{error || "Something went wrong. Try again."}</p>
+        <button onClick={reset} style={{
+          padding: "14px 32px", borderRadius: 14,
+          background: `linear-gradient(135deg, ${COLORS.green}, ${COLORS.greenDark})`,
+          border: "none", cursor: "pointer",
+          fontFamily: FONTS.heading, fontSize: 14, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "#050505",
+        }}>Try Again</button>
+      </main>
+    );
+  }
+
+  // ── RESULTS ──
+  if (state === "done" && result) {
+    return (
+      <main style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "32px 20px 60px", minHeight: "100vh", fontFamily: FONTS.body }}>
+        <div style={{ fontFamily: FONTS.heading, fontSize: 16, fontWeight: 700, letterSpacing: 6, textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: 24 }}>Cooked</div>
+        <div style={{ fontFamily: FONTS.heading, fontSize: 10, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: "rgba(255,255,255,0.2)", marginBottom: 8 }}>Your verdict</div>
+
+        <PersonalityCard result={result} />
+        <ShareableCard ref={shareCardRef} result={result} />
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 24, width: "100%", maxWidth: 340 }}>
+          <button onClick={handleShare} disabled={isSharing} style={{
+            width: "100%", padding: "16px 0", borderRadius: 14,
+            background: `linear-gradient(135deg, ${COLORS.green}, ${COLORS.greenDark})`,
+            border: "none", cursor: "pointer",
+            fontFamily: FONTS.heading, fontSize: 14, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "#050505",
+            opacity: isSharing ? 0.6 : 1,
+          }}>{isSharing ? "Generating..." : "Share to Stories"}</button>
+          <button onClick={handleSave} disabled={isSaving} style={{
+            width: "100%", padding: "14px 0", borderRadius: 14,
+            background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)",
+            cursor: "pointer",
+            fontFamily: FONTS.heading, fontSize: 14, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.5)",
+            opacity: isSaving ? 0.6 : 1,
+          }}>{isSaving ? "Saving..." : "Save Image"}</button>
+        </div>
+
+        <button onClick={reset} style={{ marginTop: 20, background: "none", border: "none", cursor: "pointer", fontFamily: FONTS.heading, fontSize: 13, fontWeight: 600, letterSpacing: 1, color: "rgba(255,255,255,0.2)", padding: "12px 24px" }}>← Get Cooked Again</button>
+
+        <footer style={{ marginTop: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+          <div style={{ display: "flex", gap: 20 }}>
+            <a href="/" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Home</a>
+            <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.15)", textDecoration: "none" }}>Privacy</a>
           </div>
-        )}
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.1)" }}>© 2026 Cooked</span>
+        </footer>
 
-        {/* DONE — Results */}
-        {state === "done" && result && (
-          <div
-            ref={resultsRef}
-            className="w-full max-w-md flex flex-col items-center gap-6"
-          >
-            <PersonalityCard result={result} />
-
-            <div className="w-full flex flex-col sm:flex-row gap-3">
-              <Button
-                className="flex-1 py-4"
-                onClick={handleShare}
-                disabled={isSharing}
-              >
-                {isSharing ? "Generating..." : "Share to Stories"}
-              </Button>
-              <Button
-                variant="secondary"
-                className="flex-1 py-4"
-                onClick={handleSave}
-                disabled={isSaving}
-              >
-                {isSaving ? "Saving..." : "Save Image"}
-              </Button>
-            </div>
-
-            <button
-              onClick={reset}
-              className="text-sm text-cooked-text-muted hover:text-cooked-text-secondary transition-colors cursor-pointer min-h-[44px] px-4"
-            >
-              Get Cooked Again
-            </button>
-
-            {/* Hidden shareable card for PNG export */}
-            <ShareableCard ref={cardRef} result={result} />
-          </div>
-        )}
-
-        {/* ERROR */}
-        {state === "error" && (
-          <div className="w-full max-w-md flex flex-col items-center gap-6 text-center py-16">
-            <div className="text-5xl">x_x</div>
-            <p className="text-lg text-cooked-red">{error}</p>
-            <div className="flex flex-col gap-3 w-full max-w-xs">
-              <Button onClick={reset}>Try Again</Button>
+        {/* Toast */}
+        {toast && (
+          <div style={{ position: "fixed", bottom: 24, left: 16, right: 16, zIndex: 50, display: "flex", justifyContent: "center" }}>
+            <div style={{ background: "#0d0d0d", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 12, padding: "12px 20px", maxWidth: 340 }}>
+              <p style={{ fontSize: 14, color: "#fff", textAlign: "center" }}>{toast}</p>
             </div>
           </div>
         )}
       </main>
-      <Footer />
+    );
+  }
 
-      {/* Toast notification */}
-      {toast && (
-        <div className="fixed bottom-6 left-4 right-4 z-50 flex justify-center">
-          <div className="bg-cooked-surface border border-cooked-border rounded-[12px] px-5 py-3 shadow-lg max-w-sm">
-            <p className="text-sm text-cooked-text-primary text-center">
-              {toast}
-            </p>
-          </div>
-        </div>
-      )}
-    </>
-  );
+  return null;
 }
