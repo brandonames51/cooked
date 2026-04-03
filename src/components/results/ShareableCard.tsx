@@ -19,7 +19,7 @@ const DM = "'DM Sans', -apple-system, sans-serif";
  * - No emojis
  * - No objectFit (html2canvas unreliable) — use explicit width+height matching actual aspect ratio
  *
- * Brain images are 700x392 (landscape ~1.79:1). NEVER force them into a square.
+ * Brain images are 677x369 (landscape ~1.83:1). NEVER force them into a square.
  */
 const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
   ({ result }, ref) => {
@@ -73,40 +73,35 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
         {/* ═══ BRAIN + SCORE — centered hero section ═══ */}
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "center",
-          gap: 20,
+          gap: 16,
           marginBottom: 18,
-          padding: "8px 0",
+          padding: "12px 0",
         }}>
-          {/* Brain — fixed 150px wide, height derived from actual 700:392 aspect ratio = 0.56 */}
-          <div style={{
-            width: 150, height: 84,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            flexShrink: 0,
-          }}>
-            <img
-              src={`/images/${tier.brainImage}`}
-              alt=""
-              style={{ width: 150, height: 84 }}
-              crossOrigin="anonymous"
-            />
-          </div>
+          {/* Brain — 677:369 aspect ratio. Width 140, height = 140 * 369/677 ≈ 76 */}
+          <img
+            src={`/images/${tier.brainImage}`}
+            alt=""
+            style={{ width: 140, height: 76, flexShrink: 0 }}
+            crossOrigin="anonymous"
+          />
 
-          {/* Score — fixed width container so layout is stable across 1-3 digit scores */}
+          {/* Score column — explicit lineHeight in px to prevent html2canvas overlap */}
           <div style={{
-            width: 120,
             display: "flex", flexDirection: "column" as const,
             alignItems: "flex-start", justifyContent: "center",
             flexShrink: 0,
           }}>
             <div style={{
-              fontFamily: SPACE, fontSize: 68, fontWeight: 700,
-              lineHeight: "0.85", letterSpacing: -3,
+              fontFamily: SPACE, fontSize: 64, fontWeight: 700,
+              lineHeight: "64px", height: 64,
+              letterSpacing: -2,
               color: tier.scoreColor,
+              overflow: "visible",
             }}>{result.cookedLevel}</div>
             <div style={{
               fontFamily: SPACE, fontSize: 15, fontWeight: 500,
               color: "rgba(255,255,255,0.25)",
-              marginTop: 6,
+              marginTop: 10,
             }}>/ 100</div>
           </div>
         </div>
