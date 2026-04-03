@@ -62,17 +62,23 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
               lineHeight: "28px",
             }}>rotted.app</span>
           </div>
-          {/* Pill: fixed 26px height, flex-centered text, no padding-top/bottom tricks */}
+          {/* Pill: flex container centers a nested span both axes */}
           <div style={{
-            fontFamily: SPACE, fontSize: 9, fontWeight: 700,
-            letterSpacing: 2.5, textTransform: "uppercase" as const,
-            height: 26, lineHeight: "26px",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            height: 28,
             paddingLeft: 14, paddingRight: 14,
-            minWidth: 70, textAlign: "center" as const,
+            minWidth: 72,
             borderRadius: 50,
-            background: tier.pillBg, color: tier.pillColor,
+            background: tier.pillBg,
             border: `1px solid ${tier.pillBorder}`,
-          }}>{tier.label}</div>
+          }}>
+            <span style={{
+              fontFamily: SPACE, fontSize: 9, fontWeight: 700,
+              letterSpacing: 2.5, textTransform: "uppercase" as const,
+              color: tier.pillColor,
+              lineHeight: "1",
+            }}>{tier.label}</span>
+          </div>
         </div>
 
         {/* ═══ BRAIN + SCORE — two equal-height boxes, contents centered ═══ */}
