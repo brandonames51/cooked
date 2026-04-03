@@ -122,6 +122,91 @@ Settings → Screen Time → See All Activity → Screenshot → Upload it here 
     );
   }
 
+  // ── SCREENSHOT HELP ──
+  if (state === "screenshot_help") {
+    return (
+      <main style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "40px 20px", minHeight: "100vh", fontFamily: FONTS.body }}>
+        <div style={{ fontFamily: FONTS.heading, fontSize: 20, fontWeight: 700, letterSpacing: 8, textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 40 }}>Rotted</div>
+
+        <h1 style={{ fontFamily: FONTS.heading, fontSize: 28, fontWeight: 700, color: "#fff", textAlign: "center", lineHeight: 1.2, letterSpacing: -0.5, marginBottom: 8 }}>wrong screenshot, bestie</h1>
+        <p style={{ fontSize: 14, color: "rgba(255,255,255,0.45)", textAlign: "center", maxWidth: 300, lineHeight: 1.5, marginBottom: 24 }}>we couldn&apos;t read your screen time data. here&apos;s why.</p>
+
+        {/* Error explanation box */}
+        <div style={{ width: "100%", maxWidth: 340, background: "rgba(226,75,74,0.08)", border: "1px solid rgba(226,75,74,0.2)", borderRadius: 16, padding: 18, marginBottom: 24 }}>
+          <div style={{ fontFamily: FONTS.heading, fontSize: 9, fontWeight: 600, letterSpacing: 2.5, textTransform: "uppercase", color: "rgba(226,75,74,0.6)", marginBottom: 8 }}>why it failed</div>
+          <div style={{ fontFamily: FONTS.heading, fontSize: 15, fontWeight: 700, color: "rgba(255,255,255,0.85)", marginBottom: 6 }}>your screenshot is missing app data</div>
+          <p style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", lineHeight: 1.5 }}>you uploaded the overview page instead of the detailed app list. we need to see individual apps and their times to roast you properly.</p>
+        </div>
+
+        {/* Side-by-side comparison */}
+        <div style={{ display: "flex", gap: 12, width: "100%", maxWidth: 340, marginBottom: 24 }}>
+          {/* Wrong screenshot */}
+          <div style={{ flex: 1, background: "rgba(226,75,74,0.06)", border: "1px solid rgba(226,75,74,0.15)", borderRadius: 14, padding: 14, display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div style={{ fontSize: 20, marginBottom: 6 }}>✕</div>
+            <div style={{ fontFamily: FONTS.heading, fontSize: 10, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(226,75,74,0.7)", marginBottom: 12 }}>won&apos;t work</div>
+            {/* Mockup: overview chart */}
+            <div style={{ width: "100%", background: "rgba(255,255,255,0.03)", borderRadius: 10, padding: 12, marginBottom: 8 }}>
+              {/* Bar chart mockup */}
+              <div style={{ display: "flex", alignItems: "flex-end", gap: 4, height: 48, marginBottom: 8, justifyContent: "center" }}>
+                {[28, 40, 32, 48, 36, 24, 44].map((h, i) => (
+                  <div key={i} style={{ width: 8, height: h, borderRadius: 2, background: "rgba(226,75,74,0.25)" }} />
+                ))}
+              </div>
+              <div style={{ fontFamily: FONTS.heading, fontSize: 18, fontWeight: 700, color: "rgba(255,255,255,0.4)", textAlign: "center" }}>6h 23m</div>
+              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.2)", textAlign: "center", marginTop: 2 }}>daily average</div>
+            </div>
+            <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", lineHeight: 1.4 }}>overview — no app list</div>
+          </div>
+
+          {/* Correct screenshot */}
+          <div style={{ flex: 1, background: "rgba(92,224,48,0.06)", border: "1px solid rgba(92,224,48,0.15)", borderRadius: 14, padding: 14, display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div style={{ fontSize: 20, marginBottom: 6 }}>✓</div>
+            <div style={{ fontFamily: FONTS.heading, fontSize: 10, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(92,224,48,0.7)", marginBottom: 12 }}>this works</div>
+            {/* Mockup: app list */}
+            <div style={{ width: "100%", background: "rgba(255,255,255,0.03)", borderRadius: 10, padding: 10, marginBottom: 8, display: "flex", flexDirection: "column", gap: 7 }}>
+              {[
+                { color: "#5ce030", name: "Messages", time: "4h 11m" },
+                { color: "#4A90D9", name: "Safari", time: "54m" },
+                { color: "#E24B9A", name: "Instagram", time: "53m" },
+                { color: "#F5A623", name: "Chrome", time: "33m" },
+              ].map((app) => (
+                <div key={app.name} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <div style={{ width: 8, height: 8, borderRadius: 2, background: app.color, flexShrink: 0 }} />
+                  <span style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", flex: 1 }}>{app.name}</span>
+                  <span style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", fontFamily: FONTS.heading, fontWeight: 600 }}>{app.time}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", lineHeight: 1.4 }}>app list with times</div>
+          </div>
+        </div>
+
+        {/* Fix instruction */}
+        <div style={{ width: "100%", maxWidth: 340, padding: "12px 16px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)", borderRadius: 12, marginBottom: 28 }}>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", lineHeight: 1.6, textAlign: "center" }}>
+            Settings → Screen Time → tap See All Activity → scroll past the graph until you see apps with times → screenshot that
+          </p>
+        </div>
+
+        {/* CTA */}
+        <button onClick={reset} style={{
+          width: "100%", maxWidth: 340, padding: "16px 0", borderRadius: 14,
+          background: `linear-gradient(135deg, ${COLORS.green}, ${COLORS.greenDark})`,
+          border: "none", cursor: "pointer",
+          fontFamily: FONTS.heading, fontSize: 14, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: "#050505",
+        }}>LETS RUN IT BACK</button>
+
+        <footer style={{ marginTop: "auto", paddingTop: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+          <div style={{ display: "flex", gap: 20 }}>
+            <a href="/" style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Home</a>
+            <a href="/privacy" style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", textDecoration: "none" }}>Privacy</a>
+          </div>
+          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.2)" }}>© 2026 rotted.app</span>
+        </footer>
+      </main>
+    );
+  }
+
   // ── RESULTS ──
   if (state === "done" && result) {
     return (

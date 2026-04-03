@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import type { CookedResult } from "@/types";
 
-type AnalyzeState = "idle" | "analyzing" | "done" | "error";
+type AnalyzeState = "idle" | "analyzing" | "done" | "error" | "screenshot_help";
 
 const LOADING_MESSAGES = [
   "your phone is snitching rn...",
@@ -59,7 +59,9 @@ export function useAnalyze(): UseAnalyzeReturn {
       const data = await response.json();
 
       if (!data.success) {
-        setState("error");
+        const helpErrors = ["Could not read your screenshot", "No app usage data found"];
+        const isScreenshotIssue = helpErrors.some(e => data.error?.includes(e));
+        setState(isScreenshotIssue ? "screenshot_help" : "error");
         setError(data.error || "Analysis failed");
         return;
       }
