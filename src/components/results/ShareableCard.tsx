@@ -41,52 +41,65 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: tier.topGlow }} />
 
         {/* ═══ HEADER: brand left + tier pill right ═══ */}
+        {/* Fixed 28px row height. Both sides use display:flex + alignItems:center
+            so brand text and pill text sit on the same visual baseline. */}
         <div style={{
           display: "flex", justifyContent: "space-between", alignItems: "center",
+          height: 28,
           marginBottom: 16,
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, height: 28 }}>
             <span style={{
               fontFamily: SPACE, fontSize: 13, fontWeight: 700,
               letterSpacing: 4, textTransform: "uppercase" as const,
               color: "rgba(255,255,255,0.45)",
+              lineHeight: "28px",
             }}>Rotted</span>
-            <span style={{ fontFamily: DM, fontSize: 10, color: "rgba(255,255,255,0.2)" }}>·</span>
+            <span style={{ fontFamily: DM, fontSize: 10, color: "rgba(255,255,255,0.2)", lineHeight: "28px" }}>·</span>
             <span style={{
               fontFamily: DM, fontSize: 10, fontWeight: 600,
               color: tier.footerDomain, letterSpacing: 0.3,
+              lineHeight: "28px",
             }}>rotted.app</span>
           </div>
-          {/* Tier pill — fixed min-width so all labels ("Raw" to "Rotted") look consistent */}
+          {/* Pill: fixed 26px height, flex-centered text, no padding-top/bottom tricks */}
           <div style={{
             fontFamily: SPACE, fontSize: 9, fontWeight: 700,
             letterSpacing: 2.5, textTransform: "uppercase" as const,
-            padding: "5px 14px",
+            height: 26, lineHeight: "26px",
+            paddingLeft: 14, paddingRight: 14,
             minWidth: 70, textAlign: "center" as const,
             borderRadius: 50,
             background: tier.pillBg, color: tier.pillColor,
             border: `1px solid ${tier.pillBorder}`,
-            lineHeight: "1.2",
           }}>{tier.label}</div>
         </div>
 
-        {/* ═══ BRAIN + SCORE — centered hero section ═══ */}
+        {/* ═══ BRAIN + SCORE — two equal-height boxes, contents centered ═══ */}
+        {/* Both boxes are 110px tall. Brain and score each center within their box.
+            This guarantees vertical alignment regardless of brain graphic or score. */}
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "center",
-          gap: 16,
+          gap: 12,
           marginBottom: 18,
-          padding: "12px 0",
         }}>
-          {/* Brain — 677:369 aspect ratio. Width 140, height = 140 * 369/677 ≈ 76 */}
-          <img
-            src={`/images/${tier.brainImage}`}
-            alt=""
-            style={{ width: 140, height: 76, flexShrink: 0 }}
-            crossOrigin="anonymous"
-          />
-
-          {/* Score column — explicit lineHeight in px to prevent html2canvas overlap */}
+          {/* Brain box — 160x110, brain centered inside */}
           <div style={{
+            width: 160, height: 110,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0,
+          }}>
+            <img
+              src={`/images/${tier.brainImage}`}
+              alt=""
+              style={{ width: 150, height: 82 }}
+              crossOrigin="anonymous"
+            />
+          </div>
+
+          {/* Score box — same 110px height, score+/100 centered inside */}
+          <div style={{
+            height: 110,
             display: "flex", flexDirection: "column" as const,
             alignItems: "flex-start", justifyContent: "center",
             flexShrink: 0,
@@ -101,7 +114,7 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
             <div style={{
               fontFamily: SPACE, fontSize: 15, fontWeight: 500,
               color: "rgba(255,255,255,0.25)",
-              marginTop: 10,
+              marginTop: 10, height: 18, lineHeight: "18px",
             }}>/ 100</div>
           </div>
         </div>
